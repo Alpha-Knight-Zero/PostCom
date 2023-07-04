@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Purpose is a unique and beautiful collection of UI elements that are all flexible and modular. A complete and customizable solution to building the website of your dreams."
+    />
+    <meta name="author" content="Webpixels" />
+    <title>LearnFlow - Profile Settings</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../cstm-assets/logo.svg" type="image/png" />
+    <!-- Font Awesome 5 -->
+    <link
+      rel="stylesheet"
+      href="../libs/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/libs/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="/libs/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="/libs/select2/dist/css/select2.min.css" />
+    <!-- Page CSS -->
+    <link
+      type="text/css"
+      href="../libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css"
+      rel="stylesheet"
+    />
+    <!-- Purpose CSS -->
+    <link rel="stylesheet" href="../css/purpose.css" id="stylesheet" />
+    <style>
+      input[type="file"]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #5e00d8;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: #fff !important;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header header-transparent" id="header-main">
+      <!-- Main navbar -->
+      <%- include('partials/navbar'); %>
+    </header>
+
+    <div class="main-content">
+      <!-- Header (account) -->
+      <%- include('partials/header'); %>
+      <section class="pt-5 pt-lg-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <!-- Profile Card -->
+              <%- include('partials/profile'); %>
+            </div>
+            <div class="col-lg-8 mt-lg-5">
+              <div class="row">
+                <div class="col-sm">
+                  <!-- Change avatar -->
+                  <div class="actions-toolbar py-2 mb-4">
+                    <h5>Change Avatar</h5>
+                  </div>
+                  <div class="card bg-gradient-warning hover-shadow-lg">
+                    <div class="card-body py-3">
+                      <div class="row row-grid align-items-center">
+                        <div class="col-lg-8">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <div>
+                                <form id="change-avatar">
+                                  <input
+                                    type="file"
+                                    id="avatar"
+                                    name="avatar"
+                                    accept="image/*"
+                                  />
+                                </form>
+                              </div>
+                              <div id="message"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="col-auto flex-fill mt-4 mt-sm-0 text-sm-right d-none d-lg-block"
+                          style="margin-top: 1.5rem !important"
+                          id="avatar-btn-container"
+                        >
+                          <button
+                            type="submit"
+                            type="button"
+                            form="change-avatar"
+                            class="btn btn-primary rounded-pill"
+                          >
+                            <span class="btn-inner--icon"
+                              ><i class="fas fa-fire"></i
+                            ></span>
+                            <span class="btn-inner--text">Change</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <!-- Change cover -->
+                  <div class="actions-toolbar py-2 mb-4">
+                    <h5>Change Cover</h5>
+                  </div>
+                  <div class="card bg-gradient-warning hover-shadow-lg">
+                    <div class="card-body py-3">
+                      <div class="row row-grid align-items-center">
+                        <div class="col-lg-8">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <div>
+                                <form id="change-cover">
+                                  <input
+                                    type="file"
+                                    id="file-input-2"
+                                    name="file"
+                                    accept="image/*"
+                                  />
+                                </form>
+                              </div>
+                              <div id="message-2"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="col-auto flex-fill mt-4 mt-sm-0 text-sm-right d-none d-lg-block"
+                          style="margin-top: 1.5rem !important"
+                          id="avatar-btn-container"
+                        >
+                          <button
+                            type="submit"
+                            type="button"
+                            form="change-cover"
+                            class="btn btn-primary rounded-pill"
+                          >
+                            <span class="btn-inner--icon"
+                              ><i class="fas fa-fire"></i
+                            ></span>
+                            <span class="btn-inner--text">Change</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- General information form -->
+              <div class="actions-toolbar py-2 mb-4">
+                <h5 class="mb-1">General information</h5>
+              </div>
+              <form id="profile-form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Display name</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="displayName"
+                        id="displayName"
+                        value="<%= user.displayName %>"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">First name</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        value="<%= user.firstName %>"
+                        placeholder="Enter your first name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Last name</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        value="<%= user.lastName %>"
+                        placeholder="Also your last name"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Phone</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        placeholder="+91 1234567890"
+                        value="<%= user.phone %>"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Gender</label>
+                      <select
+                        class="form-control"
+                        data-toggle="select"
+                        id="gender"
+                        name="gender"
+                      >
+                        <option
+                          value="<%= user.gender %>"
+                          selected
+                          disabled
+                          hidden
+                        >
+                          <%= user.gender %>
+                        </option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Rather not say">Rather not say</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Email</label>
+                      <input
+                        class="form-control"
+                        type="email"
+                        name="email"
+                        id="email"
+                        value="<%= user.email %>"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <div class="pt-5 mt-5 delimiter-top">
+                  <div class="actions-toolbar py-2 mb-4">
+                    <h5 class="mb-1">About me</h5>
+                    <p class="text-sm text-muted mb-0">
+                      Use this field to let others know you better.
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <div class="form-group">
+                          <label class="form-control-label">Bio</label>
+                          <textarea
+                            class="form-control"
+                            name="about"
+                            id="about"
+                            placeholder="Tell us a few words about yourself"
+                            rows="5"
+                          >
+<%= user.about %></textarea
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Save changes buttons -->
+                <div class="pt-5 mt-5 delimiter-top text-center">
+                  <input
+                    type="submit"
+                    class="btn btn-sm btn-primary"
+                    value="Save changes"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Footer-->
+    <%- include('partials/footer'); %>
+    <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
+    <script src="../js/purpose.core.js"></script>
+    <!-- Page JS -->
+    <script src="../libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src="../libs/autosize/dist/autosize.min.js"></script>
+    <script src="/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="/libs/select2/dist/js/select2.min.js"></script>
+    <script src="/libs/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <!-- Purpose JS -->
+    <script src="../js/purpose.js"></script>
+    <!-- Demo JS - remove it when starting your project -->
+    <script src="../js/demo.js"></script>
+  </body>
+</html>
+
+<!-- <script>
+  const user = JSON.parse(`<%- JSON.stringify(user) %>`);
+  const profileForm = document.querySelector("#profile-form");
+  if (user.about.length > 0) {
+    profileForm.about.innerHTML = user.about;
+  }
+</script> -->
+
+<!-- <script>
+  const updateProfileImage = async (key) => {
+    try {
+      const res = await fetch("/update/avatar", {
+        method: "PATCH",
+        body: JSON.stringify({
+          key,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(res);
+      return res.ok;
+    } catch (error) {
+      return error;
+    }
+  };
+</script>
+
+<script>
+  const updateCoverImage = async (key) => {
+    try {
+      const res = await fetch("/update/cover", {
+        method: "PATCH",
+        body: JSON.stringify({
+          key,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(res);
+      return res.ok;
+    } catch (error) {
+      return error;
+    }
+  };
+</script> -->
+
+<script>
+  const changeAvatarForm = document.querySelector("#change-avatar");
+  changeAvatarForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const avatarFile = document.querySelector("#avatar").files[0];
+    const urlResponse = await fetch(
+      `/get/preSignedURL?fileName=${avatarFile.name}&contentType=${avatarFile.type}`,
+      { method: "GET" }
+    );
+    const urlData = await urlResponse.json();
+
+    const uploadResponse = await fetch(urlData.url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": avatarFile.type,
+      },
+      body: avatarFile,
+    });
+
+    const response = await fetch("/profile", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        image: `https://d1ecyonmvcaoie.cloudfront.net/${urlData.fileName}`,
+      }),
+    });
+
+    const data = await response.json();
+    if (data._id) {
+      window.location.reload(true);
+    } else {
+      alert("Oops, something went wrong");
+    }
+  });
+</script>
+
+<!-- <script>
+  const form = document.querySelector("#change-avatar");
+  const message = document.querySelector("#message");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const file = document.querySelector("#file-input").files[0];
+    const fileName = file.name;
+    const contentType = file.type;
+
+    const urlRes = await fetch(
+      `/upload?fileName=${fileName}&contentType=${contentType}`,
+      {
+        method: "GET",
+      }
+    );
+
+    const data = await urlRes.json();
+    const url = data.url;
+    const key = data.key;
+    // Make sure the file type matches the content-type of your pre-signed URL
+
+    try {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": contentType,
+        },
+        body: file,
+      });
+      if (response.ok) {
+        message.textContent = "Image uploaded successfully!";
+        const result = await updateProfileImage(key);
+        window.location.reload(true);
+      } else {
+        message.textContent = `Error uploading image: ${response.statusText}`;
+      }
+    } catch (error) {
+      message.textContent = `Error uploading image: ${error}`;
+    }
+
+    // console.log(response);
+    // .then((response) => {
+    //   console.log(response);
+    //   if (response.ok) {
+    //     message.textContent = "Image uploaded successfully!";
+
+    //   } else {
+    //     message.textContent = `Error uploading image: ${response.statusText}`;
+    //   }
+    // })
+    // .catch((error) => {
+    //   message.textContent = `Error uploading image: ${error}`;
+    // });
+  });
+</script> -->
+
+<!-- <script>
+  const form2 = document.querySelector("#change-cover");
+  const message2 = document.querySelector("#message-2");
+
+  form2.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const file = document.querySelector("#file-input-2").files[0];
+    const fileName = file.name;
+    const contentType = file.type;
+
+    const urlRes = await fetch(
+      `/upload?fileName=${fileName}&contentType=${contentType}`,
+      {
+        method: "GET",
+      }
+    );
+
+    const data = await urlRes.json();
+    const url = data.url;
+    const key = data.key;
+    // Make sure the file type matches the content-type of your pre-signed URL
+
+    try {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": contentType,
+        },
+        body: file,
+      });
+      if (response.ok) {
+        message2.textContent = "Image uploaded successfully!";
+        const result = await updateCoverImage(key);
+        window.location.reload(true);
+      } else {
+        message2.textContent = `Error uploading image: ${response.statusText}`;
+      }
+    } catch (error) {
+      message2.textContent = `Error uploading image: ${error}`;
+    }
+  });
+</script> -->
+
+<!-- <script>
+  profileForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+      const displayName = profileForm.displayName.value;
+      const firstName = profileForm.firstName.value;
+      const lastName = profileForm.lastName.value;
+      const gender = profileForm.gender.value;
+      const phone = profileForm.phone.value;
+      const about = profileForm.about.value;
+
+      const res = await fetch("/update/profile", {
+        method: "PATCH",
+        body: JSON.stringify({
+          displayName,
+          firstName,
+          lastName,
+          gender,
+          phone,
+          about,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (res.status == 200) {
+        window.location.reload(true);
+      } else {
+        alert("Oops something went wrong!");
+      }
+    } catch (error) {
+      alert("Oops something went wrong!");
+    }
+  });
+</script> -->
+
+<script>
+  const profileForm = document.querySelector("#profile-form");
+  profileForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const displayName = profileForm.displayName.value;
+    const firstName = profileForm.firstName.value;
+    const lastName = profileForm.lastName.value;
+    const phone = profileForm.phone.value;
+    const gender = profileForm.gender.value;
+    const about = profileForm.about.value;
+
+    const response = await fetch("/profile", {
+      method: "PATCH",
+      body: JSON.stringify({
+        displayName,
+        firstName,
+        lastName,
+        phone,
+        gender,
+        about,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (data._id) {
+      window.location.reload(true);
+    } else {
+      alert("Something went wrong, try later");
+    }
+  });
+</script>
+
+<!--  -->

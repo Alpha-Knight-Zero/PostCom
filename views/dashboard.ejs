@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <meta name="author" content="Webpixels" />
+    <title>LearnFlow - Dashboard</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../cstm-assets/logo.svg" type="image/png" />
+    <!-- Font Awesome 5 -->
+    <link
+      rel="stylesheet"
+      href="../libs/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <!-- Page CSS -->
+    <link
+      type="text/css"
+      href="../libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css"
+      rel="stylesheet"
+    />
+    <!-- Purpose CSS -->
+    <link rel="stylesheet" href="../css/purpose.css" id="stylesheet" />
+    <style>
+      #post-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 2rem;
+      }
+      @media screen and (max-width: 576px) {
+        #post-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header header-transparent" id="header-main">
+      <!-- Main navbar -->
+      <%- include('partials/navbar'); %>
+    </header>
+
+    <div class="main-content">
+      <!-- Header (account) -->
+      <%- include('partials/header'); %>
+      <section class="pt-5 pt-lg-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <!-- Profile Card -->
+              <%- include('partials/profile'); %>
+            </div>
+            <div class="col-lg-8 mt-lg-5" id="post-grid" style="">
+              <% for(const post of posts) { %>
+              <div
+                class="card mt-4"
+                style="cursor: pointer"
+                onclick='window.location.replace("/post/<%= post._id %>")'
+              >
+                <div class="card-header pt-4 pb-2">
+                  <div class="card overflow-hidden border-0">
+                    <img
+                      alt="Image placeholder"
+                      loading="lazy"
+                      src="../img/theme/light/app-2.png"
+                      class="card-img-top"
+                    />
+                    <span class="mask bg-info opacity-3"></span>
+                    <span
+                      class="mask hover-mask bg-gradient-warning opacity-9"
+                    ></span>
+                    <div class="card-img-overlay d-flex flex-column">
+                      <div class="my-auto text-center px-3 py-5">
+                        <a
+                          href="/post/<%= post._id %>"
+                          class="h3 text-white mb-0"
+                          ><%= post.title %></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <p><%= post.subTitle %></p>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Footer-->
+    <%- include('partials/footer'); %>
+    <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
+    <script src="../js/purpose.core.js"></script>
+    <!-- Page JS -->
+    <script src="../libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src="../libs/autosize/dist/autosize.min.js"></script>
+    <!-- Purpose JS -->
+    <script src="../js/purpose.js"></script>
+    <!-- Demo JS - remove it when starting your project -->
+    <script src="../js/demo.js"></script>
+  </body>
+</html>

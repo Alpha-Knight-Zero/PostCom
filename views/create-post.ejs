@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Purpose is a unique and beautiful collection of UI elements that are all flexible and modular. A complete and customizable solution to building the website of your dreams."
+    />
+    <meta name="author" content="Webpixels" />
+    <title>LearnFlow - Create Post</title>
+
+    <link
+      rel="stylesheet"
+      href="/richtexteditor/richtexteditor/rte_theme_default.css"
+    />
+    <script
+      type="text/javascript"
+      src="/richtexteditor/richtexteditor/rte.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/richtexteditor/richtexteditor/plugins/all_plugins.js"
+    ></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/cstm-assets/logo.svg" type="image/png" />
+    <!-- Font Awesome 5 -->
+    <link
+      rel="stylesheet"
+      href="/libs/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="/libs/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="/libs/select2/dist/css/select2.min.css" />
+    <!-- Purpose CSS -->
+    <link rel="stylesheet" href="/css/purpose.css" id="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="/richtexteditor/richtexteditor/rte_theme_default.css"
+    />
+  </head>
+
+  <body>
+    <header class="header header-transparent" id="header-main">
+      <!-- Main navbar -->
+      <%- include('partials/navbar'); %>
+    </header>
+
+    <div class="main-content">
+      <!-- Header (account) -->
+      <%- include('partials/header'); %>
+      <section class="pt-5 pt-lg-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <!-- Profile Card -->
+              <%- include('partials/profile'); %>
+            </div>
+            <div class="col-lg-8 mt-lg-5">
+              <!-- General information form -->
+              <div class="actions-toolbar py-2 mb-4">
+                <h5 class="mb-1">Post a new video</h5>
+                <p class="text-sm text-muted mb-0">
+                  You can help us, by filling your data, create you a much
+                  better experience using our website.
+                </p>
+              </div>
+              <form id="post-form">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-control-label">Video Title</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="title"
+                        required
+                        id="title"
+                        placeholder="Enter your post title"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-control-label">Video SubTitle</label>
+                      <textarea
+                        class="form-control"
+                        type="text"
+                        name="subTitle"
+                        required
+                        rows="2"
+                        id="subTitle"
+                        placeholder="Enter your post subtitle"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Video -->
+                <!-- <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label mb-3"
+                        >Video Thumbnail</label
+                      >
+                      <input
+                        type="file"
+                        id="video-thumbnail"
+                        accept="image/*"
+                        class="custom-input-file"
+                      />
+                      <label for="video-thumbnail">
+                        <i class="fa fa-upload"></i>
+                        <span>Choose a file…</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label mb-3">Video File</label>
+                      <input
+                        type="file"
+                        id="video"
+                        accept="video/*"
+                        class="custom-input-file"
+                      />
+                      <label for="video">
+                        <i class="fa fa-upload"></i>
+                        <span>Choose a file…</span>
+                      </label>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- Description -->
+                <div class="mt-5 delimiter-top">
+                  <div class="actions-toolbar py-2 mb-4">
+                    <h5 class="mb-1">Video Description</h5>
+                    <p class="text-sm text-muted mb-0">
+                      Use this field to enter about your video content
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <div id="div_editor1"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Save changes buttons -->
+                <div class="pt-5 mt-5 delimiter-top text-center">
+                  <input
+                    type="submit"
+                    class="btn btn-sm btn-primary"
+                    value="Save changes"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Error Modal -->
+
+    <!-- <div
+      class="modal modal-danger fade"
+      id="errorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="errorModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title h6" id="modal_title_6">
+              Something went wrong
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="fas fa-frown fa-4x"></i>
+              <h5 class="heading h4 mt-4">We're Sorry</h5>
+              <p>
+                Something went wrong while trying to process your request.
+                Kindly try again later.
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="window.location.reload(true)"
+              class="btn btn-sm btn-white"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Loading Modal -->
+
+    <!-- <div
+      class="modal fade"
+      id="loadingModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <div class="spinner-grow text-" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+            <div class="py-3 text-center">
+              <p>Your Video is getting uploaded.</p>
+              <p class="font-weight-700">
+                Don't reload or close this window, as it might take a few
+                minutes depending upon size of the video...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Success Modal -->
+    <!-- <div
+      class="modal modal-success fade"
+      id="successModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modal_success"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title h6" id="modal_title_6">Successful</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="py-3 text-center">
+              <i class="fas fa-check-circle fa-4x"></i>
+              <h5 class="heading h4 mt-4">Post Created Successfully</h5>
+              <p>
+                Your post has been created successfully. You may close the
+                window now.
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="window.location.reload(true)"
+              class="btn btn-sm btn-white"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Footer-->
+    <%- include('partials/footer'); %>
+    <!-- Scripts -->
+    <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
+    <script src="/js/purpose.core.js"></script>
+    <!-- Page JS -->
+    <script src="/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="/libs/select2/dist/js/select2.min.js"></script>
+    <script src="/libs/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <!-- Purpose JS -->
+    <script src="/js/purpose.js"></script>
+    <!-- Demo JS - remove it when starting your project -->
+    <script src="/js/demo.js"></script>
+    <script
+      type="text/javascript"
+      src="/richtexteditor/richtexteditor/rte.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/richtexteditor/richtexteditor/plugins/all_plugins.js"
+    ></script>
+  </body>
+</html>
+
+<script>
+  var editor1 = new RichTextEditor("#div_editor1");
+</script>
+
+<!-- <script>
+  const uploadFile = async (file) => {
+    try {
+      const fileName = file.name;
+      const contentType = file.type;
+
+      const urlRes = await fetch(
+        `/upload?fileName=${fileName}&contentType=${contentType}`,
+        {
+          method: "GET",
+        }
+      );
+
+      const data = await urlRes.json();
+      const url = data.url;
+      const key = data.key;
+
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": contentType,
+        },
+        body: file,
+      });
+      return {
+        response,
+        url,
+        key,
+      };
+    } catch (error) {
+      $("#loadingModal").modal("hide");
+      $("errorModal").modal("show");
+    }
+  };
+  const createPost = async (postObject) => {
+    try {
+      const response = await fetch("/post/create/new", {
+        method: "POST",
+        body: JSON.stringify(postObject),
+        headers: { "Content-Type": "application/json" },
+      });
+      return response;
+    } catch (error) {
+      $("#loadingModal").modal("hide");
+      $("errorModal").modal("show");
+    }
+  };
+</script>
+
+<script>
+  const form = document.querySelector("form");
+  const message = document.querySelector("#message");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    $("#loadingModal").modal("show");
+    $("#successModal").modal("hide");
+    $("#errorModal").modal("hide");
+
+    // Make sure the file type matches the content-type of your pre-signed URL
+
+    try {
+      const videoThumbnail =
+        document.querySelector("#video-thumbnail").files[0];
+      const thumbnailResponse = await uploadFile(videoThumbnail);
+      const video = document.querySelector("#video").files[0];
+      const videoResponse = await uploadFile(video);
+      if (videoResponse.response.ok) {
+        const postCreationResponse = await createPost({
+          title: form.title.value,
+          description: editor1.getHTMLCode(),
+          thumbnailKey: thumbnailResponse.key,
+          videoKey: videoResponse.key,
+        });
+        $("#loadingModal").modal("hide");
+        $("#successModal").modal("show");
+      } else {
+        $("#loadingModal").modal("hide");
+        $("#errorModal").modal("show");
+      }
+    } catch (error) {
+      $("#loadingModal").modal("hide");
+      $("#errorModal").modal("show");
+    }
+  });
+</script> -->
+
+<script>
+  const postForm = document.querySelector("#post-form");
+  postForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const title = postForm.title.value;
+    const subTitle = postForm.subTitle.value;
+    const description = editor1.getHTMLCode();
+    console.log(title, description);
+
+    // Upload the Thumbnail image first
+
+    const response = await fetch("/create/post", {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        subTitle,
+        description,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (data._id) {
+      window.location.href = "/dashboard";
+    } else {
+      alert("Oops, something went wrong !");
+    }
+  });
+</script>

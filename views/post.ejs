@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Purpose is a unique and beautiful collection of UI elements that are all flexible and modular. A complete and customizable solution to building the website of your dreams."
+    />
+    <meta name="author" content="Webpixels" />
+    <title>LearnFlow</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/cstm-assets/logo.svg" type="image/png" />
+    <!-- Font Awesome 5 -->
+    <link
+      rel="stylesheet"
+      href="/libs/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <!-- Purpose CSS -->
+    <link rel="stylesheet" href="/css/purpose.css" id="stylesheet" />
+    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+
+    <style>
+      #my-video {
+        width: 640px;
+        height: 400px;
+      }
+      @media screen and (max-width: 776px) {
+        #my-video {
+          width: 350px;
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header" id="header-main">
+      <!-- Main navbar -->
+      <%- include('partials/navbar'); %>
+    </header>
+
+    <div class="main-content">
+      <!-- Header (account) -->
+
+      <section class="slice slice-lg" data-offset-top="#header-main">
+        <div class="container pt-6">
+          <div class="row justify-content-center">
+            <div class="col-md-9 mb-4">
+              <h1 class="lh-150 mb-3"><%= post.title %></h1>
+
+              <div class="media align-items-center mt-5">
+                <div>
+                  <a
+                    href="blog-article.html#"
+                    class="avatar rounded-circle mr-3"
+                  >
+                    <img alt="Image placeholder" src="<%= author.image %>" />
+                  </a>
+                </div>
+                <div
+                  class="media-body"
+                  style="display: grid; grid-template-columns: 1fr auto"
+                >
+                  <div>
+                    <span class="d-block h6 mb-0"
+                      ><%= author.displayName %></span
+                    >
+                    <span class="text-sm text-muted"><%= postDate %></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slice">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <!-- Article body -->
+              <article><%- post.description %></article>
+              <hr />
+              <h5 class="mb-4">Comments</h5>
+
+              <% for(const comment of comments) { %>
+              <div class="media media-comment">
+                <img
+                  alt="Image placeholder"
+                  class="rounded-circle shadow mr-4"
+                  src="<%= comment.authorImage %>"
+                  style="width: 64px; height: 64px"
+                />
+                <div class="media-body" id="comment-<%= comment._id %>">
+                  <div class="media-comment-bubble left-top">
+                    <h6 class="mt-0"><%= comment.author %></h6>
+                    <p class="text-sm lh-160"><%= comment.commentText %></p>
+                    <div class="icon-actions">
+                      <button
+                        href="blog-article.html#"
+                        class="btn btn-small"
+                        onclick="loadReplies(`<%= comment._id %>`, `<%= comment.depth %>`)"
+                      >
+                        <i class="fas fa-comment"></i>
+                        <span class="text-muted">View Replies</span>
+                      </button>
+
+                      <button
+                        href="blog-article.html#"
+                        class="btn btn-small"
+                        onclick="addReplyBox(`<%= comment._id %>`, `<%= comment.depth %>`)"
+                      >
+                        <i class="fas fa-reply"></i>
+                        <span class="text-muted">Reply</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+
+              <div class="media media-comment align-items-center">
+                <img
+                  alt="Image placeholder"
+                  class="avatar rounded-circle shadow mr-4"
+                  src="<%= user.image %>"
+                />
+                <div class="media-body">
+                  <form class="post-<%= post._id %>" id="post-<%= post._id %>">
+                    <div class="form-group mb-0">
+                      <div class="input-group input-group-merge border">
+                        <textarea
+                          class="form-control"
+                          data-toggle="autosize"
+                          name="commentText"
+                          id="commentText"
+                          placeholder="Write your comment"
+                          rows="1"
+                        ></textarea>
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-primary"
+                            form="post-<%= post._id %>"
+                            id="comment-button-<%= post._id %>"
+                            type="submit"
+                          >
+                            <span class="fas fa-paper-plane"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <%- include('partials/footer') %>
+    <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
+    <script src="/js/purpose.core.js"></script>
+    <!-- Page JS -->
+    <script src="/libs/autosize/dist/autosize.min.js"></script>
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+    <!-- Purpose JS -->
+    <script src="/js/purpose.js"></script>
+    <!-- Demo JS - remove it when starting your project -->
+    <script src="/js/demo.js"></script>
+    <!-- onclick="addComment(`post-<%= post._id %>`, 1, null, `<%= user.username%>`, )" -->
+
+    <script>
+      const commentForm = document.querySelector(`.post-<%- post._id %>`);
+      commentForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const commentText = commentForm.commentText.value;
+        const postID = `<%= post._id %>`;
+        const depth = 1;
+        const parentID = null;
+
+        try {
+          const res = await fetch("/create/comment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              commentText,
+              postID,
+              depth,
+              parentID,
+            }),
+          });
+          const data = await res.json();
+          if (data._id) {
+            window.location.reload(true);
+          } else {
+            alert("Oops something went wrong !");
+          }
+        } catch (error) {}
+      });
+    </script>
+
+    <script>
+      const addReplyBox = (parentID, parentDepth) => {
+        const parentComment = document.querySelector(`#comment-${parentID}`);
+        // console.log(parentID, parentDepth);
+        const replyBox = document.createElement("div");
+        replyBox.classList.add("media", "media-comment", "align-items-center");
+        let replyButtonFunction =
+          "replyFunction(`" + parentID + "`," + "`" + parentDepth + "`)";
+        replyBox.innerHTML = `
+        <img
+                    alt="Image placeholder"
+                    class="avatar rounded-circle shadow mr-4"
+                    src="<%= user.image %>"
+                  />
+                  <div class="media-body">
+                    <form
+                      class="comment-reply-${parentID}"
+                      id="comment-<%= user.username %>-${parentID}-${parentDepth}"
+
+                    >
+                      <div class="form-group mb-0">
+                        <div class="input-group input-group-merge border">
+                          <textarea
+                            class="form-control"
+                            data-toggle="autosize"
+                            name="commentText"
+                            id="commentText"
+                            placeholder="Write your comment"
+                            rows="1"
+                          ></textarea>
+                          <div class="input-group-append">
+                            <button
+                              class="btn btn-primary"
+                              form="comment-${parentID}"
+                              id="comment-button-${parentID}"
+                              onclick = "${replyButtonFunction}"
+                              type="submit"
+                            >
+                              <span class="fas fa-paper-plane"></span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+        `;
+        parentComment.appendChild(replyBox);
+        // const replyForm = document.querySelector(`.comment-reply-${parentId}`);
+
+        // replyForm.addEventListener("submit", async (e) => {
+        //   e.preventDefault();
+        //   console.log("HERE");
+        //   console.log(replyForm);
+        //   console.log(parentId, parentDepth);
+        // });
+      };
+    </script>
+    <script>
+      const replyFunction = async (parentID, parentDepth) => {
+        const replyForm = document.querySelector(`.comment-reply-${parentID}`);
+        const commentText = replyForm.commentText.value;
+        const postID = `<%= post._id %>`;
+        const depth = Number(parentDepth) + 1;
+
+        try {
+          const res = await fetch("/create/comment", {
+            method: "POST",
+            body: JSON.stringify({
+              commentText,
+              postID,
+              depth,
+              parentID,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          if (data._id) {
+            console.log(data._id);
+            window.location.reload(true);
+          } else {
+            throw new Error("Something went wrong");
+          }
+        } catch (error) {
+          console.log(error);
+          alert("Oops something went wrong !");
+        }
+
+        // console.log(replyForm.commentText.value);
+      };
+    </script>
+
+    <script>
+      const loadReplies = async (parentID, parentDepth) => {
+        try {
+          const res = await fetch(
+            `/fetch/reply?parentID=${parentID}&parentDepth=${parentDepth}`,
+            {
+              method: "GET",
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          const data = await res.json();
+          console.log(data);
+          const parentBody = document.querySelector(`#comment-${parentID}`);
+          for (var comment of data) {
+            const commentBox = document.createElement("div");
+            commentBox.classList.add("media", "media-comment");
+            let replyButtonFunction =
+              "addReplyBox(`" + comment._id + "`," + "`" + comment.depth + "`)";
+            let loadRepliesButtonFunction =
+              "loadReplies(`" + comment._id + "`," + "`" + comment.depth + "`)";
+            commentBox.innerHTML = `<img
+              alt="Image placeholder"
+              class="rounded-circle shadow mr-4"
+              src="${comment.authorImage}"
+              style="width: 64px; height: 64px"
+            />
+            <div class="media-body" id="comment-${comment._id}">
+              <div class="media-comment-bubble left-top">
+                <h6 class="mt-0">${comment.author}</h6>
+                <p class="text-sm lh-160"> ${comment.commentText} </p>
+                <div class="icon-actions">
+                  <button
+                    href="blog-article.html#"
+                    class="btn btn-small"
+                    onclick="${loadRepliesButtonFunction}"
+                  >
+                    <i class="fas fa-comment"></i>
+                    <span class="text-muted">View Replies</span>
+                  </button>
+                  <!-- <a href="blog-article.html#" class="love active">
+                    <i class="fas fa-heart"></i>
+                    <span class="text-muted">10 likes</span>
+                  </a> -->
+
+                  <button
+                    href="blog-article.html#"
+                    class="btn btn-small"
+                    onclick="${replyButtonFunction}"
+                  >
+                    <i class="fas fa-reply"></i>
+                    <span class="text-muted">Reply</span>
+                  </button>
+                </div>
+              </div>
+            </div>`;
+            parentBody.appendChild(commentBox);
+          }
+          if (!data.length) {
+            const noReplyBox = document.createElement("div");
+            noReplyBox.classList.add("media-comment-bubble", "left-top");
+
+            noReplyBox.innerHTML = `<p class="text-sm lh-160"> No Reply Yet </p>`;
+            parentBody.appendChild(noReplyBox);
+            setTimeout(() => {
+              parentBody.removeChild(parentBody.lastChild);
+            }, 1500);
+          }
+        } catch (error) {
+          console.log(error);
+          alert("Oops something went wrong!");
+        }
+      };
+    </script>
+  </body>
+</html>

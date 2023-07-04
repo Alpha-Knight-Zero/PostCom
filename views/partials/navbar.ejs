@@ -1,0 +1,53 @@
+<nav
+  class="navbar navbar-main navbar-expand-lg navbar-dark bg-primary"
+  id="navbar-main"
+  style="padding-top: 2rem; padding-bottom: 2rem"
+>
+  <div class="container px-lg-0">
+    <!-- Logo -->
+
+    <!-- Navbar collapse trigger -->
+    <button
+      class="navbar-toggler pr-0"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbar-main-collapse"
+      aria-controls="navbar-main-collapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar nav -->
+    <div class="collapse navbar-collapse" id="navbar-main-collapse">
+      <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+        <li class="nav-item d-lg-none d-xl-block">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+
+        <li class="nav-item mr-0">
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn-sm btn-primary dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <%= user.firstName + ' ' + user.lastName %>
+            </button>
+            <div class="dropdown-menu" style="width: 70%; min-width: 13rem">
+              <a class="dropdown-item" href="/profile">
+                <i class="fas fa-user"></i> Profile</a
+              >
+              <a class="dropdown-item" href="/auth/logout">
+                <i class="fas fa-arrow-alt-circle-right"></i> Logout</a
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

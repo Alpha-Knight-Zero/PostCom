@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <meta name="author" content="Webpixels" />
+    <title>LearnFlow</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/brand/favicon.png" type="image/png" />
+    <!-- Font Awesome 5 -->
+    <link
+      rel="stylesheet"
+      href="../libs/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <!-- Page CSS -->
+    <link
+      rel="stylesheet"
+      href="../libs/quill/dist/quill.core.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="../libs/flatpickr/dist/flatpickr.min.css" />
+    <!-- Purpose CSS -->
+    <link rel="stylesheet" href="../css/purpose.css" id="stylesheet" />
+  </head>
+
+  <body class="application application-offset">
+    <!-- Application container -->
+    <div class="container-fluid container-application">
+      <!-- Content -->
+      <div class="main-content position-relative">
+        <!-- Page content -->
+        <div class="page-content">
+          <div class="min-vh-100 py-5 d-flex align-items-center">
+            <div class="w-100">
+              <div class="row justify-content-center">
+                <div class="col-sm-8 col-lg-5">
+                  <div class="card shadow zindex-100 mb-0">
+                    <div class="card-body px-md-5 py-5">
+                      <div class="mb-5">
+                        <h6 class="h3">Choose your role</h6>
+                        <!-- <p class="text-muted mb-0">
+                          Made with love by developers for developers.
+                        </p> -->
+                      </div>
+                      <span class="clearfix"></span>
+                      <form role="form">
+                        <div class="row align-items-center">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <div
+                                class="custom-control custom-radio custom-control-inline"
+                              >
+                                <input
+                                  type="radio"
+                                  id="creator-role"
+                                  name="role"
+                                  required
+                                  value="0"
+                                  class="custom-control-input"
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  for="creator-role"
+                                  >Creator</label
+                                >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <div
+                                class="custom-control custom-radio custom-control-inline"
+                              >
+                                <input
+                                  type="radio"
+                                  id="student-role"
+                                  name="role"
+                                  required
+                                  value="1"
+                                  class="custom-control-input"
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  for="student-role"
+                                  >Student</label
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-4">
+                          <button
+                            type="submit"
+                            class="btn btn-sm btn-primary btn-icon rounded-pill"
+                          >
+                            <span class="btn-inner--text"
+                              >Create my account</span
+                            >
+                            <span class="btn-inner--icon"
+                              ><i class="fas fa-long-arrow-alt-right"></i
+                            ></span>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+      </div>
+    </div>
+    <!-- Scripts -->
+    <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
+    <script src="../js/purpose.core.js"></script>
+    <script src="../libs/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="../libs/autosize/dist/autosize.min.js"></script>
+    <script src="../libs/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="../libs/quill/dist/quill.min.js"></script>
+    <script src="../libs/flatpickr/dist/flatpickr.min.js"></script>
+    <!-- Purpose JS -->
+    <script src="../js/purpose.js"></script>
+    <!-- Demo JS - remove it when starting your project -->
+    <script src="../js/demo.js"></script>
+  </body>
+
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const role = form.role.value;
+      const response = await fetch("/user/update/role", {
+        method: "PATCH",
+        body: JSON.stringify({
+          role,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.status === 200) {
+        window.location.href = "/dashboard";
+      } else {
+        const data = await response.json();
+        alert(data.error);
+      }
+    });
+  </script>
+</html>
