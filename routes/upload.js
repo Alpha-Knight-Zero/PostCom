@@ -10,50 +10,52 @@
 
 // Choose File -> Make a request to aws to Pre-signed URL for S3 bucket -> use Pre-signed URL to upload the file
 
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-const { v4: uuid } = require("uuid");
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+const { v4: uuid } = require('uuid');
+
+require('dotenv').config();
 
 const bucket = new S3Client({
-  region: "ap-south-1",
-  credentials: {
-    accessKeyId: "AKIAQ2TJILA4JDB3ERK2",
-    secretAccessKey: "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",
-  },
+	region: 'ap-south-1',
+	credentials: {
+		accessKeyId: 'AKIAQ2TJILA4JDB3ERK2',
+		secretAccessKey: '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',
+	},
 });
 
 // URL -> Associated with a single with a fixed file name and a fixed file type
 //     -> Using this URL we are going to make a PUT request to AWS at the pre-signed URL, body -> file
 
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-router.get("/get/preSignedURL", async (req, res) => {
-  //  DP.jpg -> DP-ajndfjhanghijdhgbaihbnga.jpg
-  // image/jpg -> [image, jpg]
-  const contentType = req.query.contentType;
+router.get('/get/preSignedURL', async (req, res) => {
+	//  DP.jpg -> DP-ajndfjhanghijdhgbaihbnga.jpg
+	// image/jpg -> [image, jpg]
+	const contentType = req.query.contentType;
 
-  const fileName =
-    req.query.fileName.split(".")[0] +
-    "-" +
-    uuid() +
-    "." +
-    contentType.split("/")[1];
+	const fileName =
+		req.query.fileName.split('.')[0] +
+		'-' +
+		uuid() +
+		'.' +
+		contentType.split('/')[1];
 
-  const command = new PutObjectCommand({
-    Bucket: "learnflow-resource-bucket",
-    Key: fileName,
-    ContentType: contentType,
-  });
+	const command = new PutObjectCommand({
+		Bucket: 'learnflow-resource-bucket',
+		Key: fileName,
+		ContentType: contentType,
+	});
 
-  const url = await getSignedUrl(bucket, command, { expiresIn: 3600 });
-  console.log(url);
-  console.log(fileName);
-  res.send({
-    url,
-    fileName,
-  });
+	const url = await getSignedUrl(bucket, command, { expiresIn: 3600 });
+	console.log(url);
+	console.log(fileName);
+	res.send({
+		url,
+		fileName,
+	});
 });
 
 module.exports = router;
