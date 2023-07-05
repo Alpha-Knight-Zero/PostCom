@@ -1,6 +1,9 @@
 const passport = require('passport');
 require('dotenv').config();
 
+const clienID = process.env.GOOGLE_CLIENT_ID;
+const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+
 const mongoose = require('mongoose');
 
 const User = mongoose.model('users');
@@ -10,9 +13,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(
 	new GoogleStrategy(
 		{
-			clientID:
-				'1096204226532-ktn75c7brhf7vt6ugs2na30ptg3rhkod.apps.googleusercontent.com',
-			clientSecret: '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',
+			clientID: clienID,
+			clientSecret: clientSecret,
 			callbackURL: '/auth/google/callback',
 		},
 		async (accessToken, refreshToken, profile, done) => {
