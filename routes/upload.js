@@ -16,11 +16,16 @@ const { v4: uuid } = require('uuid');
 
 require('dotenv').config();
 
+const s3_bucket = process.env.AWS_S3_BUCKET_NAME;
+const s3_region = process.env.AWS_S3_REGION;
+const s3_access_key = process.env.AWS_S3_ACCESS_KEY;
+const s3_secret_key = process.env.AWS_S3_SECRET_KEY;
+
 const bucket = new S3Client({
-	region: 'ap-south-1',
+	region: s3_region,
 	credentials: {
-		accessKeyId: 'AKIAQ2TJILA4JDB3ERK2',
-		secretAccessKey: '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',
+		accessKeyId: s3_access_key,
+		secretAccessKey: s3_secret_key,
 	},
 });
 
@@ -44,7 +49,7 @@ router.get('/get/preSignedURL', async (req, res) => {
 		contentType.split('/')[1];
 
 	const command = new PutObjectCommand({
-		Bucket: 'learnflow-resource-bucket',
+		Bucket: s3_bucket,
 		Key: fileName,
 		ContentType: contentType,
 	});
