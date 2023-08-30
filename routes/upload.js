@@ -66,6 +66,6 @@ module.exports = router;
  *
  * 1. Pre-signed URL -> Used to upload a file on S3 Bucket
  * 2. Make a PUT Request to the above gen pre-signed url to upload the file to s3 Bucket
- * 3. Take CDN URL (https://d1ecyonmvcaoie.cloudfront.net/Screenshot+2023-04-29+at+4-4565ba4e-b9cd-482b-a3a8-b3a02446e7f8.png) -> Update User Profile in DB (PATCH)
+ * 3. Take CDN URL  -> Update User Profile in DB (PATCH)
  *
  */
