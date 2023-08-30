@@ -426,10 +426,11 @@
   const postForm = document.querySelector("#post-form");
   postForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const title = postForm.title.value;
     const subTitle = postForm.subTitle.value;
     const description = editor1.getHTMLCode();
-    console.log(title, description);
+    // console.log(title, description);
 
     // Upload the Thumbnail image first
 
