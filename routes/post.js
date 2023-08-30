@@ -33,7 +33,7 @@ router.post(
         ...req.body,
         userID: user._id,
       });
-      console.log(post);
+      // console.log(post);
 
       res.status(200).send(post);
     } catch (error) {
