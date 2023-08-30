@@ -1,61 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta
-      name="description"
-      content="Purpose is a unique and beautiful collection of UI elements that are all flexible and modular. A complete and customizable solution to building the website of your dreams."
-    />
-    <meta name="author" content="Webpixels" />
-    <title>PostCom - Profile Settings</title>
-    <!-- Favicon -->
-    <link rel="icon" href="../cstm-assets/logo.svg" type="image/png" />
-    <!-- Font Awesome 5 -->
-    <link
-      rel="stylesheet"
-      href="../libs/@fortawesome/fontawesome-free/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/libs/@fortawesome/fontawesome-free/css/all.min.css"
-    />
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="/libs/flatpickr/dist/flatpickr.min.css" />
-    <link rel="stylesheet" href="/libs/select2/dist/css/select2.min.css" />
-    <!-- Page CSS -->
-    <link
-      type="text/css"
-      href="../libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css"
-      rel="stylesheet"
-    />
-    <!-- Purpose CSS -->
-    <link rel="stylesheet" href="../css/purpose.css" id="stylesheet" />
-    <style>
-      input[type="file"]::file-selector-button {
-        margin-right: 20px;
-        border: none;
-        background: #5e00d8;
-        padding: 10px 20px;
-        border-radius: 10px;
-        color: #fff !important;
-        cursor: pointer;
-      }
-    </style>
-  </head>
 
-  <body>
-    <header class="header header-transparent" id="header-main">
-      <!-- Main navbar -->
-      <%- include('partials/navbar'); %>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description"
+    content="Purpose is a unique and beautiful collection of UI elements that are all flexible and modular. A complete and customizable solution to building the website of your dreams." />
+  <meta name="author" content="Webpixels" />
+  <title>PostCom - Profile Settings</title>
+  <!-- Favicon -->
+  <link rel="icon" href="../cstm-assets/logo.svg" type="image/png" />
+  <!-- Font Awesome 5 -->
+  <link rel="stylesheet" href="../libs/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="/libs/@fortawesome/fontawesome-free/css/all.min.css" />
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="/libs/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="/libs/select2/dist/css/select2.min.css" />
+  <!-- Page CSS -->
+  <link type="text/css" href="../libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css" rel="stylesheet" />
+  <!-- Purpose CSS -->
+  <link rel="stylesheet" href="../css/purpose.css" id="stylesheet" />
+  <style>
+    input[type="file"]::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #5e00d8;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff !important;
+      cursor: pointer;
+    }
+  </style>
+</head>
 
-    <div class="main-content">
-      <!-- Header (account) -->
-      <%- include('partials/header'); %>
+<body>
+  <header class="header header-transparent" id="header-main">
+    <!-- Main navbar -->
+    <%- include('partials/navbar'); %>
+  </header>
+
+  <div class="main-content">
+    <!-- Header (account) -->
+    <%- include('partials/header'); %>
       <section class="pt-5 pt-lg-0">
         <div class="container">
           <div class="row">
@@ -78,32 +64,17 @@
                             <div class="media-body">
                               <div>
                                 <form id="change-avatar">
-                                  <input
-                                    type="file"
-                                    id="avatar"
-                                    name="avatar"
-                                    accept="image/*"
-                                  />
+                                  <input type="file" id="avatar" name="avatar" accept="image/*" />
                                 </form>
                               </div>
                               <div id="message"></div>
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="col-auto flex-fill mt-4 mt-sm-0 text-sm-right d-none d-lg-block"
-                          style="margin-top: 1.5rem !important"
-                          id="avatar-btn-container"
-                        >
-                          <button
-                            type="submit"
-                            type="button"
-                            form="change-avatar"
-                            class="btn btn-primary rounded-pill"
-                          >
-                            <span class="btn-inner--icon"
-                              ><i class="fas fa-fire"></i
-                            ></span>
+                        <div class="col-auto flex-fill mt-4 mt-sm-0 text-sm-right d-none d-lg-block"
+                          style="margin-top: 1.5rem !important" id="avatar-btn-container">
+                          <button type="submit" type="button" form="change-avatar" class="btn btn-primary rounded-pill">
+                            <span class="btn-inner--icon"><i class="fas fa-fire"></i></span>
                             <span class="btn-inner--text">Change</span>
                           </button>
                         </div>
@@ -124,32 +95,17 @@
                             <div class="media-body">
                               <div>
                                 <form id="change-cover">
-                                  <input
-                                    type="file"
-                                    id="file-input-2"
-                                    name="file"
-                                    accept="image/*"
-                                  />
+                                  <input type="file" id="file-input-2" name="file" accept="image/*" />
                                 </form>
                               </div>
                               <div id="message-2"></div>
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="col-auto flex-fill mt-4 mt-sm-0 text-sm-right d-none d-lg-block"
-                          style="margin-top: 1.5rem !important"
-                          id="avatar-btn-container"
-                        >
-                          <button
-                            type="submit"
-                            type="button"
-                            form="change-cover"
-                            class="btn btn-primary rounded-pill"
-                          >
-                            <span class="btn-inner--icon"
-                              ><i class="fas fa-fire"></i
-                            ></span>
+                        <div class="col-auto flex-fill mt-4 mt-sm-0 text-sm-right d-none d-lg-block"
+                          style="margin-top: 1.5rem !important" id="avatar-btn-container">
+                          <button type="submit" type="button" form="change-cover" class="btn btn-primary rounded-pill">
+                            <span class="btn-inner--icon"><i class="fas fa-fire"></i></span>
                             <span class="btn-inner--text">Change</span>
                           </button>
                         </div>
@@ -168,13 +124,8 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label">Display name</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="displayName"
-                        id="displayName"
-                        value="<%= user.displayName %>"
-                      />
+                      <input class="form-control" type="text" name="displayName" id="displayName"
+                        value="<%= user.displayName %>" />
                     </div>
                   </div>
                 </div>
@@ -182,27 +133,15 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label">First name</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        value="<%= user.firstName %>"
-                        placeholder="Enter your first name"
-                      />
+                      <input class="form-control" type="text" name="firstName" id="firstName"
+                        value="<%= user.firstName %>" placeholder="Enter your first name" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label">Last name</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        value="<%= user.lastName %>"
-                        placeholder="Also your last name"
-                      />
+                      <input class="form-control" type="text" name="lastName" id="lastName" value="<%= user.lastName %>"
+                        placeholder="Also your last name" />
                     </div>
                   </div>
                 </div>
@@ -210,31 +149,15 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label">Phone</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        placeholder="+91 1234567890"
-                        value="<%= user.phone %>"
-                      />
+                      <input class="form-control" type="text" name="phone" id="phone" placeholder="+91 1234567890"
+                        value="<%= user.phone %>" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label">Gender</label>
-                      <select
-                        class="form-control"
-                        data-toggle="select"
-                        id="gender"
-                        name="gender"
-                      >
-                        <option
-                          value="<%= user.gender %>"
-                          selected
-                          disabled
-                          hidden
-                        >
+                      <select class="form-control" data-toggle="select" id="gender" name="gender">
+                        <option value="<%= user.gender %>" selected disabled hidden>
                           <%= user.gender %>
                         </option>
                         <option value="Female">Female</option>
@@ -248,14 +171,8 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="form-control-label">Email</label>
-                      <input
-                        class="form-control"
-                        type="email"
-                        name="email"
-                        id="email"
-                        value="<%= user.email %>"
-                        readonly
-                      />
+                      <input class="form-control" type="email" name="email" id="email" value="<%= user.email %>"
+                        readonly />
                     </div>
                   </div>
                 </div>
@@ -273,15 +190,9 @@
                       <div class="form-group">
                         <div class="form-group">
                           <label class="form-control-label">Bio</label>
-                          <textarea
-                            class="form-control"
-                            name="about"
-                            id="about"
-                            placeholder="Tell us a few words about yourself"
-                            rows="5"
-                          >
-<%= user.about %></textarea
-                          >
+                          <textarea class="form-control" name="about" id="about"
+                            placeholder="Tell us a few words about yourself" rows="5">
+<%= user.about %></textarea>
                         </div>
                       </div>
                     </div>
@@ -289,20 +200,16 @@
                 </div>
                 <!-- Save changes buttons -->
                 <div class="pt-5 mt-5 delimiter-top text-center">
-                  <input
-                    type="submit"
-                    class="btn btn-sm btn-primary"
-                    value="Save changes"
-                  />
+                  <input type="submit" class="btn btn-sm btn-primary" value="Save changes" />
                 </div>
               </form>
             </div>
           </div>
         </div>
       </section>
-    </div>
-    <!-- Footer-->
-    <%- include('partials/footer'); %>
+  </div>
+  <!-- Footer-->
+  <%- include('partials/footer'); %>
     <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
     <script src="../js/purpose.core.js"></script>
     <!-- Page JS -->
@@ -315,7 +222,8 @@
     <script src="../js/purpose.js"></script>
     <!-- Demo JS - remove it when starting your project -->
     <script src="../js/demo.js"></script>
-  </body>
+</body>
+
 </html>
 
 <!-- <script>
@@ -387,7 +295,7 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        image: `https://d1ecyonmvcaoie.cloudfront.net/${urlData.fileName}`,
+        image: `https://dqtr3s3i1tnyf.cloudfront.net/${urlData.fileName}`,
       }),
     });
 
@@ -435,5 +343,3 @@
     }
   });
 </script>
-
-<!--  -->
