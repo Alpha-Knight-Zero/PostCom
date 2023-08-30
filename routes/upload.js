@@ -1,5 +1,5 @@
 // 1. Bucket - Storage for application -> learnflow-resource-bucket
-// 2. CDN - https://d1ecyonmvcaoie.cloudfront.net -> Used to view/read any object inside the Bucket
+// 2. CDN -> Used to view/read any object inside the Bucket
 // 3. Policy -> Set of Permissions define that anyone to whom this policy is attached they will have access to Bucket
 // 4. User -> Set of credentials / application to which policies are attached
 
