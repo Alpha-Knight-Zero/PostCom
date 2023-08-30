@@ -52,8 +52,8 @@ router.get('/get/preSignedURL', async (req, res) => {
 	});
 
 	const url = await getSignedUrl(bucket, command, { expiresIn: 3600 });
-	console.log(url);
-	console.log(fileName);
+	// console.log(url);
+	// console.log(fileName);
 	res.send({
 		url,
 		fileName,
