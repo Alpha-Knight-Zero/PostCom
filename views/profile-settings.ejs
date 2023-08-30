@@ -226,49 +226,6 @@
 
 </html>
 
-<!-- <script>
-  const user = JSON.parse(`<%- JSON.stringify(user) %>`);
-  const profileForm = document.querySelector("#profile-form");
-  if (user.about.length > 0) {
-    profileForm.about.innerHTML = user.about;
-  }
-</script> -->
-
-<!-- <script>
-  const updateProfileImage = async (key) => {
-    try {
-      const res = await fetch("/update/avatar", {
-        method: "PATCH",
-        body: JSON.stringify({
-          key,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(res);
-      return res.ok;
-    } catch (error) {
-      return error;
-    }
-  };
-</script>
-
-<script>
-  const updateCoverImage = async (key) => {
-    try {
-      const res = await fetch("/update/cover", {
-        method: "PATCH",
-        body: JSON.stringify({
-          key,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(res);
-      return res.ok;
-    } catch (error) {
-      return error;
-    }
-  };
-</script> -->
 
 <script>
   const changeAvatarForm = document.querySelector("#change-avatar");
