@@ -1,4 +1,4 @@
-// 1. Bucket - Storage for application -> learnflow-resource-bucket
+// 1. Bucket - Storage for application -> AWS S3
 // 2. CDN -> Used to view/read any object inside the Bucket
 // 3. Policy -> Set of Permissions define that anyone to whom this policy is attached they will have access to Bucket
 // 4. User -> Set of credentials / application to which policies are attached
